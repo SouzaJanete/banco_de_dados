@@ -1,4 +1,3 @@
-[21:35] Fabrício Tonetto Londero
 
 
 create table java 

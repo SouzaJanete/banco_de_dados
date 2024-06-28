@@ -1,0 +1,117 @@
+
+CREATE DATABASE livraria;
+
+create table editoras
+(
+	id serial primary key,
+	nome varchar(60) not null
+);
+
+create table categorias
+(
+	id serial primary key,
+	nome varchar(60) not null
+);
+
+create table autores
+(
+	id serial primary key,
+	nome varchar(60) not null,
+	nacionalidade varchar(60)
+);
+
+create table livros
+(
+	ISBN varchar(22) primary key,
+	titulo varchar(40) not null,
+	ano-publicacao integer not null,
+	fk_editora integer,
+	fk_categoria integer,
+	foreign key (fk_editora) references editoras(id),
+	foreign key (fk_categoria) references categorias(id)
+	
+);
+
+create table livro_autor
+(
+	id serial primary key,
+	fk_livro varchar(22),
+	fk_autor integer,
+	foreign key (fk_livro) references livros(isbn),
+	foreign key (fk_autor) references autores(id)
+);
+
+
+-- DML
+ 
+INSERT
+ 
+insert into categorias(nome) values ('Literatura Juvenil');
+insert into categorias(nome) values ('Humor');
+insert into categorias(nome) values ('Ficção Cientifica');
+ 
+ 
+insert into editoras(nome) values 
+	('Rocco'), 
+	('WmfMartins Fontes'), 
+	('Casa da Palavra'),
+	('Belas Letras'), 
+	('Matrix');
+
+
+insert into autores (nome, nacionalidade) values 
+	('J.K Rowling', 'Inglês'),
+	('Clive Staples Lewis Fontes', 'Inglês'),
+	(' Affonso_Solano',  'Brasileiro'),
+	('Marcos Piangers', 'Brasileiro'),
+	('Ciro Botelho-Tiririca', 'Brasileiro'),
+	('Bianca Mól', 'Brasileira'),
+	('J. KRowling', 'Inglês');
+
+
+	
+insert into livros(isbn, titulo, ano_publicacao, fk_editora, fk_categoria)
+values
+	('8532511015', 'Harry Potter e A Pedra Filosofal', 2000, )1, 1),
+	('9788578270698', 'As Crônicas de Námia ', 2009, 2, 1),
+	('97s8577343348', '○ Espadachim de Carvão', 2013, )3, 1),
+	('97885S1742458', 'O Papai É Pop', 2015, 4, 2),
+	('9788582302026', 'Pior Que Tá Não Fica', 2015, 5, 2),
+	('9788577345670', 'Garota Desdobrável', 2000, 3, 3),
+	('8532512062', 'Harry Potter e o prisioneiro de Azkaban', 1920, 1, 1);
+
+	
+ INSERT INTO livro_autor (fk_livro, fk_autor) VALUES 
+('8532511015', 1),
+('9788578270698', 2),
+('9788577343348', 3),
+('9788577342458', 4),
+('9788582302026', 5),
+('9788577345670', 6),
+('8532512062', 7);
+ 
+SELECT
+select * from livros
+select * from categorias
+select * from editoras
+select * from autores
+select * from livro_autor
+
+
+INSERT INTO livro_autor (fk_livro, fk_autor) VALUES ('4516516515615', 1);
+
+
+
+DELETE
+ 
+delete from editoras
+delete from editoras where id = 3
+delete from editoras where nome = 'Sextante'
+delete from categorias where id = 4
+ 
+UPDATE
+ 
+update editoras set nome = 'Darkside' 
+update editoras set nome = 'Rocco' where id = 6
+ 
+update livros set fk_categoria = 1 where titulo = 'Cthulhu'

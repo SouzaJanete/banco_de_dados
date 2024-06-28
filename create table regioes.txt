@@ -1,0 +1,49 @@
+create table regioes
+(
+	id serial primary key,
+	nome varchar(70) not null
+)
+
+create table grupos
+(
+	id serial primary key,
+	nome varchar(30) not null
+)
+
+create table eras
+(
+	id serial primary key,
+	nome varchar(30) not null
+)
+
+create table descobridores
+(
+	id serial primary key,
+	nome varchar(80) not null
+)
+
+create table dinossauros
+(
+	id serial primary key,
+	nome varchar(70) not null,
+	toneladas integer not null,
+	ano_descoberta integer not null,
+	fk_grupo integer,
+	fk_descobridor integer,
+	fk_era integer,
+	inicio integer,
+	fim integer,
+	fk_regiao integer,
+	foreign key (fk_grupo) references grupos(id),
+	foreign key (fk_descobridor) references descobridores(id),
+	foreign key (fk_era) references eras(id),
+	foreign key (fk_regiao) references regioes(id)
+)
+
+
+
+- Select (o que quero selecionar), From (de onde quero selecionar, tabelas mães), Where (de onde quero selecionar, mistura as chaves), Order By (a ordem de selecão dos dados) e As (Como vai aparecer a seleção):
+select dinossauros.id, dinossauros.nome, dinossauros.toneladas, dinossauros.ano_descoberta, grupos.nome, descobridores.nome, eras.nome, dinossauros.inicio, dinossauros.fim, regioes.nome
+from dinossauros, grupos, descobridores, eras, regioes
+where dinossauros.fk_grupo = grupos.id and dinossauros.fk_descobridor = descobridores.id and dinossauros.fk_era = eras.id and dinossauros.fk_regiao = regioes.id
+order by dinossauros.nome

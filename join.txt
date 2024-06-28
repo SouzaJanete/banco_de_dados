@@ -1,0 +1,134 @@
+[21:35] Fabrício Tonetto Londero
+
+
+create table java 
+
+(
+
+	professor varchar(20) null
+
+)
+ 
+create table dotnet 
+
+(
+
+	professor varchar(20) null
+
+)
+ 
+insert into java values ('Fabrício'), ('Lucas'), ('Reiner')
+ 
+insert into dotnet values ('Fabrício'), ('Ricardo')
+ 
+select * from java
+
+select * from dotnet
+ 
+ 
+--inner join
+
+select * from java
+
+inner join dotnet
+
+on java.professor = dotnet.professor
+ 
+--left join
+
+select * from java
+
+left join dotnet
+
+on java.professor = dotnet.professor
+ 
+--left join exclusivo
+
+select * from java
+
+left join dotnet
+
+on java.professor = dotnet.professor
+
+where dotnet.professor is null
+ 
+--right join
+
+select * from java
+
+right join dotnet
+
+on java.professor = dotnet.professor
+ 
+--right join exclusivo
+
+select * from java
+
+right join dotnet
+
+on java.professor = dotnet.professor
+
+where java.professor is null
+ 
+--full outer join
+
+select * from java
+
+full outer join dotnet
+
+on java.professor = dotnet.professor
+ 
+--full outer join exclusivo
+
+select * from java
+
+full outer join dotnet
+
+on java.professor = dotnet.professor
+
+where java.professor is null or dotnet.professor is null
+
+[21:39] Fabrício Tonetto Londero
+
+
+select dinossauros.nome, dinossauros.toneladas, dinossauros.ano_descoberta,
+
+	grupos.nome as Grupo, descobridores.nome as Descobridor, eras.nome as Era, 
+
+	dinossauros.inicio, dinossauros.fim, regioes.nome as Região
+
+from dinossauros, 
+
+grupos, 
+
+descobridores, 
+
+eras, 
+
+regioes
+
+where dinossauros.fk_grupo = grupos.id and dinossauros.fk_descobridor = descobridores.id
+
+	and dinossauros.fk_era = eras.id and dinossauros.fk_regiao = regioes.id
+
+order by dinossauros.nome
+ 
+select 
+
+	dinossauros.nome, dinossauros.toneladas, dinossauros.ano_descoberta,
+
+	grupos.nome as Grupo, descobridores.nome as Descobridor, eras.nome as Era, 
+
+	dinossauros.inicio, dinossauros.fim, regioes.nome as Região
+
+from dinossauros
+
+join grupos on dinossauros.fk_grupo = grupos.id
+
+join descobridores on dinossauros.fk_descobridor = descobridores.id
+
+join eras on dinossauros.fk_era = eras.id
+
+join regioes on dinossauros.fk_regiao = regioes.id
+
+order by dinossauros.nome
